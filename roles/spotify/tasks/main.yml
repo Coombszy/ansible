@@ -1,0 +1,6 @@
+---
+# Ensure Snap is installed using snapd role
+- name: Install spotify
+  snap:
+    name: spotify
+    state: present

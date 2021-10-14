@@ -1,0 +1,8 @@
+---
+
+packages: [
+    vim,
+    atop,
+    htop,
+    python
+]

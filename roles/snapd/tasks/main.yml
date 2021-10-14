@@ -1,0 +1,14 @@
+---
+# Debian
+- name: Install snapd
+  apt:
+    name: snapd
+    state: present
+  when: ansible_facts['os_family']|lower == 'debian'
+
+# RHEL
+- name: Install snapd
+  yum:
+    name: snapd
+    state: present
+  when: ansible_facts['os_family']|lower == 'redhat'

@@ -1,0 +1,14 @@
+---
+# Debian
+- name: Install generic packages
+  apt:
+    pkg: "{{ packages }}"
+    state: present
+  when: ansible_facts['os_family']|lower == 'debian'
+
+# RHEL
+- name: Install generic packages
+  yum:
+    pkg: "{{ packages }}"
+    state: present
+  when: ansible_facts['os_family']|lower == 'redhat'

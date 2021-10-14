@@ -1,0 +1,21 @@
+---
+# Debian
+- name:
+  block:
+  - name: Add multiverse repo to apt
+    apt_repository:
+      repo: deb http://archive.ubuntu.com/ubuntu/ bionic multiverse
+      state: present
+
+  - name: Install steam
+    apt:
+      name: steam
+      state: present
+
+  when: ansible_facts['os_family']|lower == 'debian'
+
+# RHEL
+- name: Failed to install steam
+  debug:
+    msg: Cannot install steam on RHEL, Update role to support it!
+  when: ansible_facts['os_family']|lower == 'redhat'

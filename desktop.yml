@@ -1,0 +1,11 @@
+---
+
+- name: Install packages via roles
+  hosts: localhost
+  become: true
+  roles:
+    - roles/generic-packages
+    - roles/snapd
+    - roles/discord
+    - roles/spotify
+    - roles/steam
