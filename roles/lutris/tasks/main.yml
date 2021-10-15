@@ -2,20 +2,21 @@
 # Debian
 - name:
   block:
-  - name: Add multiverse repo to apt
+  - name: Add lutris repo to apt
     apt_repository:
-      repo: deb http://archive.ubuntu.com/ubuntu/ bionic multiverse
+      repo: ppa:lutris-team/lutris
       state: present
 
-  - name: Install steam
+  - name: Install lutris
     apt:
-      name: steam
+      name: lutris
       state: present
+      update_cache: true
 
   when: ansible_facts['os_family']|lower == 'debian'
 
 # RHEL
-- name: Failed to install steam
+- name: Failed to install lutris
   debug:
     msg: Cannot install steam on RHEL, Update role to support it!
   when: ansible_facts['os_family']|lower == 'redhat'

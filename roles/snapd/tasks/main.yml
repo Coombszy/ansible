@@ -4,6 +4,7 @@
   apt:
     name: snapd
     state: present
+    update_cache: true
   when: ansible_facts['os_family']|lower == 'debian'
 
 # RHEL
@@ -11,4 +12,5 @@
   yum:
     name: snapd
     state: present
+    update_cache: true
   when: ansible_facts['os_family']|lower == 'redhat'

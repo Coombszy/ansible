@@ -5,7 +5,11 @@
   become: true
   roles:
     - roles/generic-packages
+    # Gaming
     - roles/snapd
+    - roles/wine
+    - roles/lutris
+    - roles/steam
+    # Apps
     - roles/discord
     - roles/spotify
-    - roles/steam

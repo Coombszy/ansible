@@ -1,8 +1,14 @@
 ---
 
+repos: [
+    ppa:graphics-drivers/ppa
+]
+
 packages: [
     vim,
     atop,
     htop,
-    python
+    python,
+    vulkan-utils,
+    vulkan-tools
 ]

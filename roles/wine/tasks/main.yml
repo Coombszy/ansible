@@ -1,0 +1,29 @@
+---
+# Debian
+- name: Add wine repo to apt
+  command: "{{ item }}" 
+  args:
+    warn: false
+  with_items:
+    - "dpkg --add-architecture i386"
+    - "wget -nc https://dl.winehq.org/wine-builds/winehq.key -P /tmp"
+    - "apt-key add /tmp/winehq.key"
+    - "add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ {{ansible_lsb.codename | lower}} main'"
+    - "rm -rf /tmp/winehq.key"
+  changed_when: false
+
+  when: ansible_facts['os_family']|lower == 'debian'
+
+- name: Install wine
+  apt:
+    name: winehq-stable
+    state: present
+    install_recommends: true
+    update_cache: true
+  when: ansible_facts['os_family']|lower == 'debian'
+
+# RHEL
+- name: Failed to install wine
+  debug:
+    msg: Cannot install steam on RHEL, Update role to support it!
+  when: ansible_facts['os_family']|lower == 'redhat'

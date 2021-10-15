@@ -1,9 +1,18 @@
 ---
 # Debian
+
+- name: Add generic packages repos
+  apt_repository:
+      repo: "{{ item }}"
+      state: present
+  loop: "{{ repos }}"
+  when: ansible_facts['os_family']|lower == 'debian'
+
 - name: Install generic packages
   apt:
     pkg: "{{ packages }}"
     state: present
+    update_cache: true
   when: ansible_facts['os_family']|lower == 'debian'
 
 # RHEL
@@ -11,4 +20,5 @@
   yum:
     pkg: "{{ packages }}"
     state: present
+    update_cache: true
   when: ansible_facts['os_family']|lower == 'redhat'
