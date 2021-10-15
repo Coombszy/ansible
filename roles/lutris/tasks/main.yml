@@ -18,5 +18,5 @@
 # RHEL
 - name: Failed to install lutris
   debug:
-    msg: Cannot install steam on RHEL, Update role to support it!
+    msg: Cannot install lutris on RHEL, Update role to support it!
   when: ansible_facts['os_family']|lower == 'redhat'

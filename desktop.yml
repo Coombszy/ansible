@@ -11,5 +11,6 @@
     - roles/lutris
     - roles/steam
     # Apps
+    - roles/vscode
     - roles/discord
     - roles/spotify

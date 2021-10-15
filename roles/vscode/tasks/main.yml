@@ -1,0 +1,7 @@
+---
+# Ensure Snap is installed using snapd role
+- name: Install vscode
+  snap:
+    name: code
+    state: present
+    classic: true

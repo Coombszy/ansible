@@ -25,5 +25,5 @@
 # RHEL
 - name: Failed to install wine
   debug:
-    msg: Cannot install steam on RHEL, Update role to support it!
+    msg: Cannot install wine on RHEL, Update role to support it!
   when: ansible_facts['os_family']|lower == 'redhat'
