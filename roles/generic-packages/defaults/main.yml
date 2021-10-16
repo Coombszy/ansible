@@ -10,5 +10,8 @@ packages: [
     htop,
     python,
     vulkan-utils,
-    vulkan-tools
+    vulkan-tools,
+    screen,
+    default-jre,
+    default-jdk
 ]

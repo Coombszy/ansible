@@ -31,6 +31,7 @@
 
 # Generic
 - name: Add flatpak repo
-  args:
-      warn: false
-  shell: "flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
