@@ -1,0 +1,35 @@
+---
+# Debian
+- name: Install dependancies
+  apt:
+    name: "{{ dependant_packages }}"
+    state: present
+    install_recommends: true
+    update_cache: true
+  when: ansible_facts['os_family']|lower == 'debian'
+
+- name: Add docker key to apt
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  when: ansible_facts['os_family']|lower == 'debian'
+
+- name: Add docker repo to apt
+  apt_repository:
+    repo: "deb https://download.docker.com/linux/ubuntu {{ansible_lsb.codename | lower}} stable"
+    state: present
+  when: ansible_facts['os_family']|lower == 'debian'
+
+- name: Install docker packages
+  apt:
+    name: "{{ target_packages }}"
+    state: present
+    install_recommends: true
+    update_cache: true
+  when: ansible_facts['os_family']|lower == 'debian'
+
+# RHEL
+- name: Failed to install docker
+  debug:
+    msg: Cannot install docker on RHEL, Update role to support it!
+  when: ansible_facts['os_family']|lower == 'redhat'

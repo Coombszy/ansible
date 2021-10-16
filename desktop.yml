@@ -15,3 +15,5 @@
     - roles/vscode
     - roles/discord
     - roles/spotify
+    # DevTools
+    - roles/docker

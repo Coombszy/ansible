@@ -1,0 +1,15 @@
+---
+
+target_packages: [
+    docker-ce,
+    docker-ce-cli,
+    containerd.io
+]
+
+dependant_packages: [
+    apt-transport-https,
+    ca-certificates,
+    curl,
+    gnupg,
+    lsb-release
+]
