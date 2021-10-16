@@ -3,7 +3,8 @@
 target_packages: [
     docker-ce,
     docker-ce-cli,
-    containerd.io
+    containerd.io,
+    docker-compose
 ]
 
 dependant_packages: [
