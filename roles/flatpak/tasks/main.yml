@@ -1,0 +1,36 @@
+---
+# Debian
+- name: Install flatpak
+  apt:
+    name: flatpak
+    state: present
+    update_cache: true
+  when: ansible_facts['os_family']|lower == 'debian'
+
+- name: Install gnome-software-plugin-flatpak
+  apt:
+    name: gnome-software-plugin-flatpak
+    state: present
+    update_cache: true
+  when: ansible_facts['os_family']|lower == 'debian'
+
+# RHEL
+- name: Install flatpak
+  yum:
+    name: flatpak
+    state: present
+    update_cache: true
+  when: ansible_facts['os_family']|lower == 'redhat'
+
+- name: Install gnome-software-plugin-flatpak
+  yum:
+    name: gnome-software-plugin-flatpak
+    state: present
+    update_cache: true
+  when: ansible_facts['os_family']|lower == 'debian'
+
+# Generic
+- name: Add flatpak repo
+  args:
+      warn: false
+  shell: "flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"

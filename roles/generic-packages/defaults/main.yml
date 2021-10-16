@@ -10,6 +10,5 @@ packages: [
     htop,
     python,
     vulkan-utils,
-    vulkan-tools,
-    flatpak
+    vulkan-tools
 ]

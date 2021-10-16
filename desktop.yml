@@ -5,8 +5,9 @@
   become: true
   roles:
     - roles/generic-packages
-    # Gaming
     - roles/snapd
+    - roles/flatpak
+    # Gaming
     - roles/wine
     - roles/lutris
     - roles/steam
