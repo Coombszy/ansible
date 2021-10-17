@@ -13,5 +13,6 @@ packages: [
     vulkan-tools,
     screen,
     default-jre,
-    default-jdk
+    default-jdk,
+    maven
 ]
