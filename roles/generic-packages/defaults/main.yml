@@ -14,5 +14,6 @@ packages: [
     screen,
     default-jre,
     default-jdk,
-    maven
+    maven,
+    apache2-utils
 ]
