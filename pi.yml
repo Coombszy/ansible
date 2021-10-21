@@ -7,5 +7,3 @@
     - roles/generic-packages
     - roles/snapd
     - roles/flatpak
-    # DevTools
-    - roles/docker
