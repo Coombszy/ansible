@@ -6,4 +6,3 @@
   roles:
     - roles/generic-packages
     - roles/snapd
-    - roles/flatpak
