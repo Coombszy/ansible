@@ -1,8 +1,6 @@
 ---
 
-repos: [
-    ppa:graphics-drivers/ppa
-]
+repos: []
 
 packages: [
     vim,

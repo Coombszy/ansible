@@ -1,5 +1,9 @@
 ---
 
+target_repos: [
+    'ppa:graphics-drivers/ppa'
+]
+
 target_packages: [
     vulkan-utils,
     vulkan-tools
