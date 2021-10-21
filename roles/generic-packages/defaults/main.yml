@@ -13,5 +13,6 @@ packages: [
     default-jre,
     default-jdk,
     maven,
-    apache2-utils
+    apache2-utils,
+    git
 ]
