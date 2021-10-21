@@ -1,0 +1,11 @@
+---
+
+- name: Install packages via roles
+  hosts: localhost
+  become: true
+  roles:
+    - roles/generic-packages
+    - roles/snapd
+    - roles/flatpak
+    # DevTools
+    - roles/docker
