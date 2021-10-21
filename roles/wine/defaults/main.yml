@@ -1,0 +1,6 @@
+---
+
+target_packages: [
+    vulkan-utils,
+    vulkan-tools
+]

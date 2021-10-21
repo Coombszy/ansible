@@ -22,6 +22,13 @@
     update_cache: true
   when: ansible_facts['os_family']|lower == 'debian'
 
+- name: Install wine packages
+  apt:
+    pkg: "{{ target_packages }}"
+    state: present
+    update_cache: true
+  when: ansible_facts['os_family']|lower == 'debian'
+
 # RHEL
 - name: Failed to install wine
   debug:
