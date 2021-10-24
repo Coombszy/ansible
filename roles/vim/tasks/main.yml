@@ -1,11 +1,19 @@
 ---
 # Debian
 
-- name: Install Vim packages repos
+- name: Install Vim package
   apt:
     pkg: vim
     state: present
     update_cache: true
+  when: ansible_facts['os_family']|lower == 'debian'
+
+- name: Install packages required by Vim packages
+  apt:
+    pkg: "{{ item }}"
+    state: present
+    update_cache: true
+  loop: "{{ vim_packages }}"
   when: ansible_facts['os_family']|lower == 'debian'
 
 - name: Create .vimrc file
@@ -14,7 +22,6 @@
     dest: "/home/{{ default_user }}/.vimrc"
     owner: "{{ default_user }}"
     group: "{{ default_user }}"
-  
 
 - name: Create Vim home directory
   changed_when: false
@@ -24,22 +31,25 @@
     recurse: yes
     owner: "{{ default_user }}"
     group: "{{ default_user }}"
+    mode: '0755'
 
 - name: Create Plugin directories
   file:
-    path: "/home/{{ default_user }}/.vim/pack/vendor/start/{{ item.nickname }}"
+    path: "/home/{{ default_user }}/.vim/pack/vendor/start/{{ item.vim_nickname }}"
     state: directory
     recurse: yes
     owner: "{{ default_user }}"
     group: "{{ default_user }}"
-  loop: "{{ repos }}"
+  loop: "{{ vim_repos }}"
 
 - name: Install plugins
+  changed_when: false
   git:
-    repo: "{{ item.repo }}"
-    dest: "/home/{{ default_user }}/.vim/pack/vendor/start/{{ item.nickname }}"
+    repo: "{{ item.vim_repo }}"
+    dest: "/home/{{ default_user }}/.vim/pack/vendor/start/{{ item.vim_nickname }}"
     depth: 1
-  loop: "{{ repos }}"
+    force: true
+  loop: "{{ vim_repos }}"
 
 # RHEL
 - name: Install generic packages

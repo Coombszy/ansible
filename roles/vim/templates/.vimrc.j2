@@ -1,6 +1,16 @@
 " NOTES:
 " Vim uses " for comments annoyingly!
 
+" Vim-Plug
+"-------------------------------------------------------------------
+" Specify a directory for plugins
+" call plug#begin('~/.vim/plugged')
+
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" call plug#end()
+
+
 " NERDTree Configs
 "-------------------------------------------------------------------
 
@@ -10,6 +20,7 @@ autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | e
 
 let NERDTreeShowHidden=1
 let NERDTreeMapActivateNode='<space>'
+let g:NERDTreeWinPos = "right"
 
 " Mapping controls
 "-------------------------------------------------------------------
@@ -25,10 +36,6 @@ noremap <C-w>h <C-w><Up>
 noremap <C-w>j <C-w><Down> 
 noremap <C-w>k <C-w><Left> 
 noremap <C-w>l <C-w><Right> 
-voremap <C-w>h <C-w><Up> 
-voremap <C-w>j <C-w><Down> 
-voremap <C-w>k <C-w><Left> 
-voremap <C-w>l <C-w><Right> 
 
 " Configs
 "-------------------------------------------------------------------
@@ -44,5 +51,10 @@ filetype plugin on
 filetype indent on
 syntax on
 
-" Command
+" Change cursor
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
+
+" Commands
 command Tree NERDTree
+

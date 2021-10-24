@@ -1,9 +1,22 @@
 ---
 
-repos: 
-    - repo: "https://github.com/preservim/nerdtree.git"
-      nickname: "nerdtree"
-    - repo: "https://github.com/itchyny/lightline.vim"
-      nickname: "lightline"
+vim_commands: [
+      "curl -sL install-node.now.sh/lts | bash"
+    ]
+
+vim_packages: [
+      nodejs
+    ]
+
+vim_repos: 
+    - vim_repo: "https://github.com/preservim/nerdtree.git"
+      vim_nickname: "nerdtree"
+    - vim_repo: "https://github.com/itchyny/lightline.vim"
+      vim_nickname: "lightline"
+    - vim_repo: "https://github.com/pearofducks/ansible-vim"
+      vim_nickname: "ansible"
+    - vim_repo: "https://github.com/junegunn/vim-plug"
+      vim_nickname: "vim-plug"
+
 
 default_user: 'liam'
