@@ -1,0 +1,9 @@
+---
+
+- name: Install packages via roles
+  hosts: localhost
+  become: true
+  roles:
+    - roles/generic-packages
+    # DevTools
+    - roles/vim
