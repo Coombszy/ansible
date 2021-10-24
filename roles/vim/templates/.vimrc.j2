@@ -1,0 +1,48 @@
+" NOTES:
+" Vim uses " for comments annoyingly!
+
+" NERDTree Configs
+"-------------------------------------------------------------------
+
+" Start NERDTree. If a file is specified, move the cursor to its window.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+
+let NERDTreeShowHidden=1
+let NERDTreeMapActivateNode='<space>'
+
+" Mapping controls
+"-------------------------------------------------------------------
+mapc "Remap to defaults first
+
+" Navigation
+noremap h <Up>
+noremap j <Down>
+noremap k <Left>
+noremap l <Right>
+" Window Navifation
+noremap <C-w>h <C-w><Up> 
+noremap <C-w>j <C-w><Down> 
+noremap <C-w>k <C-w><Left> 
+noremap <C-w>l <C-w><Right> 
+voremap <C-w>h <C-w><Up> 
+voremap <C-w>j <C-w><Down> 
+voremap <C-w>k <C-w><Left> 
+voremap <C-w>l <C-w><Right> 
+
+" Configs
+"-------------------------------------------------------------------
+
+" Disable compatibility with vi which can cause unexpected issues.
+set nocompatible
+
+set number
+set autoindent
+
+filetype on
+filetype plugin on
+filetype indent on
+syntax on
+
+" Command
+command Tree NERDTree

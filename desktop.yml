@@ -17,3 +17,4 @@
     - roles/spotify
     # DevTools
     - roles/docker
+    - roles/vim
