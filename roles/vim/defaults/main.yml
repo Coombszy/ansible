@@ -5,18 +5,19 @@ vim_commands: [
     ]
 
 vim_packages: [
-      nodejs
+      fzf
     ]
 
-vim_repos: 
+vim_snaps:
+    - vim_snap: node
+      vim_snap_channel: latest/edge
+
+vim_pack_repos: 
     - vim_repo: "https://github.com/preservim/nerdtree.git"
       vim_nickname: "nerdtree"
     - vim_repo: "https://github.com/itchyny/lightline.vim"
       vim_nickname: "lightline"
     - vim_repo: "https://github.com/pearofducks/ansible-vim"
       vim_nickname: "ansible"
-    - vim_repo: "https://github.com/junegunn/vim-plug"
-      vim_nickname: "vim-plug"
-
 
 default_user: 'liam'

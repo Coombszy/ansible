@@ -1,6 +1,5 @@
 ---
 # Debian
-
 - name: Install Vim package
   apt:
     pkg: vim
@@ -16,6 +15,16 @@
   loop: "{{ vim_packages }}"
   when: ansible_facts['os_family']|lower == 'debian'
 
+# Ensure Snap is installed using snapd role
+- name: Install snaps required by Vim packages
+  snap:
+    name: "{{ item.vim_snap }}"
+    state: present
+    classic: true # TODO(Liam): Needs to be controlled by the defaults, this is not applicable for all packages
+    channel: "{{ item.vim_snap_channel }}"
+  loop: "{{ vim_snaps }}"
+  when: ansible_facts['os_family']|lower == 'debian'
+
 - name: Create .vimrc file
   template:
     src: .vimrc.j2
@@ -26,6 +35,16 @@
 - name: Create Vim home directory
   changed_when: false
   file:
+    path: "/home/{{ default_user }}/.vim"
+    state: directory
+    recurse: yes
+    owner: "{{ default_user }}"
+    group: "{{ default_user }}"
+    mode: '0755'
+
+- name: Create Vim pack directory
+  changed_when: false
+  file:
     path: "/home/{{ default_user }}/.vim/pack/vendor/start"
     state: directory
     recurse: yes
@@ -33,24 +52,24 @@
     group: "{{ default_user }}"
     mode: '0755'
 
-- name: Create Plugin directories
+- name: Create pack plugin directories
   file:
     path: "/home/{{ default_user }}/.vim/pack/vendor/start/{{ item.vim_nickname }}"
     state: directory
     recurse: yes
     owner: "{{ default_user }}"
     group: "{{ default_user }}"
-  loop: "{{ vim_repos }}"
+  loop: "{{ vim_pack_repos }}"
 
-- name: Install plugins
+- name: Install pack plugins
   changed_when: false
   git:
     repo: "{{ item.vim_repo }}"
     dest: "/home/{{ default_user }}/.vim/pack/vendor/start/{{ item.vim_nickname }}"
     depth: 1
     force: true
-  loop: "{{ vim_repos }}"
-
+  loop: "{{ vim_pack_repos }}"
+  
 # RHEL
 - name: Install generic packages
   yum:
