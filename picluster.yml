@@ -1,0 +1,11 @@
+---
+
+- name: Install packages via roles
+  hosts: picluster
+  become: true
+  roles:
+    - roles/generic-packages
+    - roles/snapd
+    - role: roles/vim
+      vars:
+        default_user: "pi"
