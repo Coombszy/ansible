@@ -83,4 +83,7 @@ Host nebuchadnezzar
    User liam
    Hostname 192.168.1.210
 
+Host piserver-openvpn
+   User liam
+   Hostname 192.168.1.231
 
