@@ -4,9 +4,9 @@ repos: []
 
 packages: [
     python3,
+    python,
     atop,
     htop,
-    python,
     screen,
     default-jre,
     default-jdk,
