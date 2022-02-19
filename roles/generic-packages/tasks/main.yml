@@ -16,6 +16,7 @@
   when: ansible_facts['os_family']|lower == 'debian'
 
 # RHEL
+# This will fail as the repos are not configured
 - name: Install generic packages
   yum:
     pkg: "{{ packages }}"

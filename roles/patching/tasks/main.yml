@@ -1,9 +1,13 @@
-# Debian
+# Generic for all distro
 
 - name: Update packages
-  apt:
+  package:
     name: "*"
     state: latest
     update_cache: true
-  when: ansible_facts['os_family']|lower == 'debian'
+  register: update_info
 
+- name: Update packages output
+  debug:
+      msg: "{{ update_info.stdout_lines }}"
+  

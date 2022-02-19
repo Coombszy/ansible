@@ -1,0 +1,6 @@
+# Hostnames are configured in ssh config
+# This is specifically for servers at Coombs Home in Reading
+
+[all]
+nebuchadnezzar
+
