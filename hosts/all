@@ -9,9 +9,9 @@ picluster_master
 picluster_nodes
 
 [picluster_master]
-raspi1
+raspi1 ansible_python_interpreter=/usr/bin/python3
 
 [picluster_nodes]
-raspi2
-raspi3
+raspi2 ansible_python_interpreter=/usr/bin/python3
+raspi3 ansible_python_interpreter=/usr/bin/python3
 
