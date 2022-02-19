@@ -3,6 +3,7 @@
 repos: []
 
 packages: [
+    python3,
     atop,
     htop,
     python,

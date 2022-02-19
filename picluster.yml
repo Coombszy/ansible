@@ -1,7 +1,7 @@
 ---
 
 - name: Install packages via roles
-  hosts: localhost
+  hosts: picluster
   become: true
   roles:
     - roles/generic-packages
