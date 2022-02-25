@@ -37,10 +37,6 @@ let g:NERDTreeWinPos = "right"
 "-------------------------------------------------------------------
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
-
-
-
-
 " Mapping controls
 "-------------------------------------------------------------------
 mapc "Remap to defaults first
@@ -50,7 +46,7 @@ noremap h <Up>
 noremap j <Down>
 noremap k <Left>
 noremap l <Right>
-" Window Navifation
+" Window Navigation
 noremap <C-w>h <C-w><Up> 
 noremap <C-w>j <C-w><Down> 
 noremap <C-w>k <C-w><Left> 
@@ -77,4 +73,17 @@ autocmd InsertLeave * set nocul
 
 " Commands
 command Tree NERDTree
+
+" Reload vimrc configuration file
+command Reload :source ~/.vimrc
+
+" Enable auto completion menu after pressing TAB.
+set wildmenu
+
+" Make wildmenu behave like similar to Bash completion.
+set wildmode=list:longest
+
+" There are certain files that we would never want to edit with Vim.
+" Wildmenu will ignore files with these extensions.
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 

@@ -4,5 +4,12 @@
   hosts: all
   become: true
   roles:
-#    - roles/generic-packages
+    - role: roles/generic-packages
+      vars:
+        packages: [
+            atop,
+            htop,
+            screen,
+            git
+        ]
     - roles/patching
