@@ -37,13 +37,13 @@
 
 # Overclocking
 # 700 MHz is the default.
-over_voltage=2
-arm_freq=1800
+over_voltage=5
+arm_freq=1750
 
 # Uncomment some or all of these to enable the optional hardware interfaces
-#dtparam=i2c_arm=on
-#dtparam=i2s=on
-#dtparam=spi=on
+dtparam=i2c_arm=on
+dtparam=i2s=on
+dtparam=spi=on
 
 # Uncomment this to enable infrared communication.
 #dtoverlay=gpio-ir,gpio_pin=17
@@ -68,10 +68,12 @@ max_framebuffers=2
 disable_overscan=1
 
 # Change fan speeds for POE hats
-dtparam=poe_fan_temp0=40000
-dtparam=poe_fan_temp1=65000
-dtparam=poe_fan_temp2=75000
-dtparam=poe_fan_temp3=80000
+dtoverlay=rpi-poe
+dtparam=poe_fan_temp0=47500,poe_fan_temp0_hyst=2500
+dtparam=poe_fan_temp1=65000,poe_fan_temp0_hyst=2500
+dtparam=poe_fan_temp2=75000,poe_fan_temp0_hyst=2500
+dtparam=poe_fan_temp3=80000,poe_fan_temp0_hyst=2500
+gpu_mem=16
 
 [cm4]
 # Enable host mode on the 2711 built-in XHCI USB controller.

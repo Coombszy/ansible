@@ -12,5 +12,6 @@ packages: [
     default-jdk,
     maven,
     apache2-utils,
-    git
+    git,
+    sysbench
 ]
