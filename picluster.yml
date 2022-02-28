@@ -1,6 +1,6 @@
 ---
 
-- name: Install packages via roles
+- name: Configure picluster
   hosts: picluster
   become: true
   roles:
@@ -8,5 +8,6 @@
     - roles/snapd
     - role: roles/vim
       vars:
-        default_user: "pi"
+        v_default_user: "pi"
     - roles/patching
+    - roles/raspi-boot

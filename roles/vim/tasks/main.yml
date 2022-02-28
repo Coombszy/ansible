@@ -28,44 +28,44 @@
 - name: Create .vimrc file
   template:
     src: .vimrc.j2
-    dest: "/home/{{ default_user }}/.vimrc"
-    owner: "{{ default_user }}"
-    group: "{{ default_user }}"
+    dest: "/home/{{ v_default_user }}/.vimrc"
+    owner: "{{ v_default_user }}"
+    group: "{{ v_default_user }}"
 
 - name: Create Vim home directory
   changed_when: false
   file:
-    path: "/home/{{ default_user }}/.vim"
+    path: "/home/{{ v_default_user }}/.vim"
     state: directory
     recurse: yes
-    owner: "{{ default_user }}"
-    group: "{{ default_user }}"
+    owner: "{{ v_default_user }}"
+    group: "{{ v_default_user }}"
     mode: '0755'
 
 - name: Create Vim pack directory
   changed_when: false
   file:
-    path: "/home/{{ default_user }}/.vim/pack/vendor/start"
+    path: "/home/{{ v_default_user }}/.vim/pack/vendor/start"
     state: directory
     recurse: yes
-    owner: "{{ default_user }}"
-    group: "{{ default_user }}"
+    owner: "{{ v_default_user }}"
+    group: "{{ v_default_user }}"
     mode: '0755'
 
 - name: Create pack plugin directories
   file:
-    path: "/home/{{ default_user }}/.vim/pack/vendor/start/{{ item.vim_nickname }}"
+    path: "/home/{{ v_default_user }}/.vim/pack/vendor/start/{{ item.vim_nickname }}"
     state: directory
     recurse: yes
-    owner: "{{ default_user }}"
-    group: "{{ default_user }}"
+    owner: "{{ v_default_user }}"
+    group: "{{ v_default_user }}"
   loop: "{{ vim_pack_repos }}"
 
 - name: Install pack plugins
   changed_when: false
   git:
     repo: "{{ item.vim_repo }}"
-    dest: "/home/{{ default_user }}/.vim/pack/vendor/start/{{ item.vim_nickname }}"
+    dest: "/home/{{ v_default_user }}/.vim/pack/vendor/start/{{ item.vim_nickname }}"
     depth: 1
     force: true
   loop: "{{ vim_pack_repos }}"

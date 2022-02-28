@@ -1,0 +1,9 @@
+---
+- name: Replace boot/config.txt file
+  template:
+    src: config.txt.j2
+    dest: "/boot/config.txt"
+    mode: 0755
+    owner: "{{ rb_default_user }}"
+    group: "{{ rb_default_user }}"
+

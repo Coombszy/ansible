@@ -20,4 +20,4 @@ vim_pack_repos:
     - vim_repo: "https://github.com/pearofducks/ansible-vim"
       vim_nickname: "ansible"
 
-default_user: 'liam'
+v_default_user: 'liam'
