@@ -8,9 +8,10 @@
     - roles/snapd
     - roles/flatpak
     # Apps
-    - roles/vscode
-    - roles/discord
-    - roles/spotify
+    #- roles/vscode
+    #- roles/discord
+    #- roles/spotify
     # DevTools
-    - roles/docker
-    - roles/vim
+    #- roles/docker
+    #- roles/vim
+    - roles/hyper

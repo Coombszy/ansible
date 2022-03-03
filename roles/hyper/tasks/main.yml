@@ -10,6 +10,18 @@
   apt:
     deb: '{{ hyper_download_target }}/{{ hyper_download_name }}'
 
-#- name: Add Hyper default config
-  
+- name:
+  file:
+    path: '{{ hyper_config_location }}'
+    state: directory
+    mode: 0755
+    owner: '{{ hyper_default_user }}'
+    group: '{{ hyper_default_user }}'
+
+- name: Create .hyper.js file
+  template:
+    src: .hyper.js.j2
+    dest: '{{ hyper_config_location }}/.hyper.js'
+    owner: '{{ hyper_default_user }}'
+    group: '{{ hyper_default_user }}'
 
