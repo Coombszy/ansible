@@ -1,0 +1,15 @@
+---
+
+- name: Download Hyper package
+  get_url:
+    url: '{{ hyper_url }}'
+    dest: '{{ hyper_download_target }}/{{ hyper_download_name }}'
+    mode: 0700
+
+- name: Install Hyper package
+  apt:
+    deb: '{{ hyper_download_target }}/{{ hyper_download_name }}'
+
+#- name: Add Hyper default config
+  
+

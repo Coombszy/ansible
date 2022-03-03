@@ -7,10 +7,6 @@
     - roles/generic-packages
     - roles/snapd
     - roles/flatpak
-    # Gaming
-    - roles/wine
-    - roles/lutris
-    - roles/steam
     # Apps
     - roles/vscode
     - roles/discord
@@ -18,4 +14,3 @@
     # DevTools
     - roles/docker
     - roles/vim
-    - roles/hyper
