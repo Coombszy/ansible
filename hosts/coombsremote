@@ -3,5 +3,8 @@
 
 [all]
 nebuchadnezzar
-openvpn ansible_python_interpreter=/usr/bin/python3
+openvpn 
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
 
