@@ -1,14 +1,23 @@
 ---
+# NOTE(Liam):
+#   This role should not be used as the Hyper terminal is resource hungry. Consider an alternative like Kitty.
+#   Consider this role as archived. To uninstall hyper, set var hyper_install to false
+#
 
+# Install Hyper
+#######################################################################################################
 - name: Download Hyper package
+  changed_when: false
   get_url:
     url: '{{ hyper_url }}'
     dest: '{{ hyper_download_target }}/{{ hyper_download_name }}'
     mode: 0700
+  when: hyper_install
 
-- name: Install Hyper package
+- name: Install Hyper from package
   apt:
     deb: '{{ hyper_download_target }}/{{ hyper_download_name }}'
+  when: hyper_install
 
 - name:
   file:
@@ -17,11 +26,63 @@
     mode: 0755
     owner: '{{ hyper_default_user }}'
     group: '{{ hyper_default_user }}'
+  when: hyper_install
 
 - name: Create .hyper.js file
-  template:
-    src: .hyper.js.j2
-    dest: '{{ hyper_config_location }}/.hyper.js'
-    owner: '{{ hyper_default_user }}'
-    group: '{{ hyper_default_user }}'
+  block:
+    - name: Create .hyper.js file (Hyper dir)
+      template:
+        src: .hyper.js.j2
+        dest: '{{ hyper_config_location }}/.hyper.js'
+        owner: '{{ hyper_default_user }}'
+        group: '{{ hyper_default_user }}'
+
+    # Also insert into user home (Config location above is for a future update to hyper)
+    - name: Create .hyper.js file (Home dir)
+      template:
+        src: .hyper.js.j2
+        dest: '/home/{{ hyper_default_user }}/.hyper.js'
+        owner: '{{ hyper_default_user }}'
+        group: '{{ hyper_default_user }}'
+  when: hyper_install
+
+- name: Delete Hyper package
+  changed_when: false
+  file: 
+    path: '{{ hyper_download_target }}/{{ hyper_download_name }}'
+    state: absent
+  when: hyper_install
+
+# Uninstall Hyper
+#######################################################################################################
+- name: Delete Hyper package
+  changed_when: false
+  ignore_errors: true
+  file: 
+    path: '{{ hyper_download_target }}/{{ hyper_download_name }}'
+    state: absent
+  when: not hyper_install
+
+- name: Uninstall Hyper
+  ignore_errors: true
+  package:
+    name: hyper
+    state: absent
+  when: not hyper_install
+
+- name: Clean Hyper files
+  ignore_errors: true
+  file:
+    path: '{{ item }}'
+    state: absent
+  loop: '{{ hyper_cleanup_files }}'
+  when: not hyper_install
+
+- name: Clean Hyper dirs
+  ignore_errors: true
+  file:
+    path: '{{ item }}'
+    state: absent
+  loop: '{{ hyper_cleanup_dirs }}'
+  when: not hyper_install
 

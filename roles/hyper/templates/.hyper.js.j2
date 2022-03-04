@@ -27,7 +27,7 @@ module.exports = {
     letterSpacing: 0,
 
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
-    cursorColor: 'rgba(248,28,229,0.8)',
+    cursorColor: 'rgba(248,28,229,0.75)',
 
     // terminal text color under BLOCK cursor
     cursorAccentColor: '#000',
@@ -36,7 +36,7 @@ module.exports = {
     cursorShape: 'BLOCK',
 
     // set to `true` (without backticks and without quotes) for blinking cursor
-    cursorBlink: false,
+    cursorBlink: true,
 
     // color of the text
     foregroundColor: '#fff',
@@ -148,7 +148,7 @@ module.exports = {
 
     // Whether to use the WebGL renderer. Set it to false to use canvas-based
     // rendering (slower, but supports transparent backgrounds)
-    webGLRenderer: true,
+    webGLRenderer: false,
 
     // keypress required for weblink activation: [ctrl|alt|meta|shift]
     // todo: does not pick up config changes automatically, need to restart terminal :/
@@ -165,8 +165,11 @@ module.exports = {
 
     // set to true to preserve working directory when creating splits or tabs
     preserveCWD: true,
+   
+    ////////////////////////////
+    // PLUGIN CONFIGS
+    ////////////////////////////
 
-    // for advanced config flags please refer to https://hyper.is/#cfg
   },
 
   // a list of plugins to fetch and install from npm
@@ -175,7 +178,9 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: [],
+  plugins: [
+    ''  
+  ],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
@@ -185,6 +190,9 @@ module.exports = {
   keymaps: {
     // Example
     // 'window:devtools': 'cmd+alt+o',
+    'tab:jump:prefix': 'alt',
+    'tab:new': 'alt+t'
   },
+
 };
 
