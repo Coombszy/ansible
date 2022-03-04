@@ -6,6 +6,11 @@
 
 # Install Hyper
 #######################################################################################################
+- name: Run prequisite roles
+  include_role:
+    name: roles/fonts
+  when: hyper_install
+
 - name: Download Hyper package
   changed_when: false
   get_url:

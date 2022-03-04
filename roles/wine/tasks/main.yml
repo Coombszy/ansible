@@ -1,5 +1,8 @@
 ---
 # Debian
+- include_role:
+    name: fonts
+
 - name: Add wine repo to apt
   command: "{{ item }}" 
   args:

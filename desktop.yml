@@ -18,7 +18,5 @@
     # DevTools
     - roles/docker
     - roles/vim
-    - role: hyper
-      vars:
-        hyper_install: true
+    - roles/hyper # Clean
 
