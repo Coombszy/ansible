@@ -1,0 +1,20 @@
+---
+
+- name: Create fonts directory
+  file:
+    path: '{{ fonts_dir }}'
+    state: directory
+    mode: 0755
+    owner: '{{ fonts_default_user }}'
+    group: '{{ fonts_default_user }}'
+
+- name: Move font into directory
+  copy:
+    src: '{{ playbook_dir }}/roles/fonts/files/RandyGGRegular.ttf'
+    dest: '{{ fonts_dir }}/RandyGGRegular.ttf'
+    owner: '{{ fonts_default_user }}'
+    group: '{{ fonts_default_user }}'
+
+- name: Font cache update
+  changed_when: false
+  shell: 'fc-cache -f'

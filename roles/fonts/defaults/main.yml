@@ -1,0 +1,4 @@
+---
+
+fonts_default_user: 'liam'
+fonts_dir: '/home/{{ fonts_default_user }}/.local/share/fonts'
