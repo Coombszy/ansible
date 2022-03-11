@@ -13,10 +13,9 @@ endif
 
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'luochen1990/rainbow'
-
+Plug 'flazz/vim-colorschemes'
 call plug#end()
 
 "-------------------------------------------------------------------
@@ -35,7 +34,7 @@ au VimEnter NERD_tree_1 enew | execute 'NERDTree '.argv()[0]
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 
-"let NERDTreeShowHidden=1
+let NERDTreeShowHidden=1
 let NERDTreeMapActivateNode='<space>'
 let g:NERDTreeWinPos = "right"
 
@@ -93,6 +92,7 @@ endfunction
 
 set laststatus=2
 let g:lightline = {
+      \ 'colorscheme': 'wombat',
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '', 'right': '' },
       \ 'component_function': {
@@ -110,6 +110,9 @@ let g:lightline.tab_component_function = {
 "-------------------------------------------------------------------
 " Extra Configs
 "-------------------------------------------------------------------
+
+" Change default colorscheme
+colorscheme 256-jungle
 
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
