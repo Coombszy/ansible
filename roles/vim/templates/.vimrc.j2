@@ -1,6 +1,7 @@
 " NOTES:
 " Vim uses " for comments annoyingly!
 
+"-------------------------------------------------------------------
 " Vim-Plug
 "-------------------------------------------------------------------
 " Install Vim-plug
@@ -18,25 +19,32 @@ Plug 'luochen1990/rainbow'
 
 call plug#end()
 
+"-------------------------------------------------------------------
 " CoC Conquer of Commands Configs
 "-------------------------------------------------------------------
-let g:coc_global_extensions = ['coc-tabnine','coc-yaml','coc-json','coc-java']
+let g:coc_global_extensions = ['coc-tabnine','coc-yaml','coc-json','coc-java', 'coc-python']
 
+"-------------------------------------------------------------------
 " NERDTree Configs
 "-------------------------------------------------------------------
+let g:NERDTreeHijackNetrw = 1
+au VimEnter NERD_tree_1 enew | execute 'NERDTree '.argv()[0]
 
+" OLD NERDTree CONFIGS
 " Start NERDTree. If a file is specified, move the cursor to its window.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 
-let NERDTreeShowHidden=1
+"let NERDTreeShowHidden=1
 let NERDTreeMapActivateNode='<space>'
 let g:NERDTreeWinPos = "right"
 
+"-------------------------------------------------------------------
 " Rainbow
 "-------------------------------------------------------------------
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
+"-------------------------------------------------------------------
 " Mapping controls
 "-------------------------------------------------------------------
 mapc "Remap to defaults first
@@ -52,11 +60,60 @@ noremap <C-w>j <C-w><Down>
 noremap <C-w>k <C-w><Left> 
 noremap <C-w>l <C-w><Right> 
 
-" Configs
+"-------------------------------------------------------------------
+" LightLine
+"-------------------------------------------------------------------
+
+function! FilenameForLightline()
+    return expand('%')
+endfunction
+
+function! TabnameForLightline(n)
+  let buflist = tabpagebuflist(a:n)
+  let winnr = tabpagewinnr(a:n)
+  let bufnum = buflist[winnr - 1]
+  let bufname = expand('#'.bufnum.':t')
+  let buffullname = expand('#'.bufnum.':p')
+  let buffullnames = []
+  let bufnames = []
+  for i in range(1, tabpagenr('$'))
+    if i != a:n
+      let num = tabpagebuflist(i)[tabpagewinnr(i) - 1]
+      call add(buffullnames, expand('#' . num . ':p'))
+      call add(bufnames, expand('#' . num . ':t'))
+    endif
+  endfor
+  let i = index(bufnames, bufname)
+  if strlen(bufname) && i >= 0 && buffullnames[i] != buffullname
+    return substitute(buffullname, '.*/\([^/]\+/\)', '\1', '')
+  else
+    return strlen(bufname) ? bufname : '[No Name]'
+  endif
+endfunction
+
+set laststatus=2
+let g:lightline = {
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' },
+      \ 'component_function': {
+      \	  'filename': 'FilenameForLightline'
+      \ }
+      \ }
+
+let g:lightline.tab_component_function = {
+      \ 'filename': 'TabnameForLightline',
+      \ 'modified': 'lightline#tab#modified',
+      \ 'readonly': 'lightline#tab#readonly',
+      \ 'tabnum': 'lightline#tab#tabnum'
+      \ }
+
+"-------------------------------------------------------------------
+" Extra Configs
 "-------------------------------------------------------------------
 
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
+set noshowmode
 
 set number
 set autoindent

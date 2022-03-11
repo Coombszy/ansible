@@ -13,5 +13,6 @@ packages: [
     maven,
     apache2-utils,
     git,
-    sysbench
+    sysbench,
+    fonts-powerline
 ]
