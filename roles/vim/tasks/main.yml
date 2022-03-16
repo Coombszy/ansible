@@ -1,5 +1,4 @@
 ---
-# Debian
 - name: Install Vim package
   apt:
     pkg: vim
@@ -69,11 +68,9 @@
     depth: 1
     force: true
   loop: "{{ vim_pack_repos }}"
-  
-# RHEL
-- name: Install generic packages
-  yum:
-    pkg: "{{ packages }}"
-    state: present
-    update_cache: true
-  when: ansible_facts['os_family']|lower == 'redhat'
+
+- name: Install pip packages
+  pip: 
+    name: "{{ item }}"
+  loop: "{{ vim_pip_packages }}"
+

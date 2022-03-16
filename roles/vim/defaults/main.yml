@@ -8,6 +8,10 @@ vim_packages: [
       fzf
     ]
 
+# Currently none required
+vim_pip_packages: [
+    ]
+
 vim_snaps:
     - vim_snap: node
       vim_snap_channel: latest/edge

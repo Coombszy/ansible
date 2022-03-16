@@ -21,7 +21,7 @@ call plug#end()
 "-------------------------------------------------------------------
 " CoC Conquer of Commands Configs
 "-------------------------------------------------------------------
-let g:coc_global_extensions = ['coc-tabnine','coc-yaml','coc-json','coc-java', 'coc-python']
+let g:coc_global_extensions = ['coc-tabnine','coc-yaml','coc-json','coc-java', 'coc-jedi']
 
 "-------------------------------------------------------------------
 " NERDTree Configs
@@ -96,8 +96,13 @@ let g:lightline = {
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '', 'right': '' },
       \ 'component_function': {
-      \	  'filename': 'FilenameForLightline'
-      \ }
+      \	  'filename': 'FilenameForLightline',
+      \   'cocstatus': 'coc#status'
+      \ },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \ },
       \ }
 
 let g:lightline.tab_component_function = {
