@@ -15,8 +15,24 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'luochen1990/rainbow'
-Plug 'flazz/vim-colorschemes'
 call plug#end()
+
+"-------------------------------------------------------------------
+" VundleVim
+"-------------------------------------------------------------------
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin('~/.vim/bundle')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Extra colorschemes
+Plugin 'flazz/vim-colorschemes'
+
+" All of your Plugins must be added before the following line
+call vundle#end()
+filetype plugin indent on 
 
 "-------------------------------------------------------------------
 " CoC Conquer of Commands Configs

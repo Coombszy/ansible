@@ -69,6 +69,45 @@
     force: true
   loop: "{{ vim_pack_repos }}"
 
+- name: Create Vundle directory
+  file:
+    path: "/home/{{ v_default_user }}/.vim/bundle/Vundle.vim"
+    state: directory
+    recurse: yes
+    owner: "{{ v_default_user }}"
+    group: "{{ v_default_user }}"
+
+- name: Install Vundle
+  changed_when: false
+  git:
+    repo: "https://github.com/VundleVim/Vundle.vim.git"
+    dest: "/home/{{ v_default_user }}/.vim/bundle/Vundle.vim"
+    depth: 1
+    force: true
+
+- name: Correct .vim ownership
+  changed_when: false
+  file:
+    path: "/home/{{ v_default_user }}/.vim"
+    state: directory
+    recurse: yes
+    owner: '{{ v_default_user }}'
+    group: '{{ v_default_user }}'
+
+- name: Install Vundle plugins
+  changed_when: false
+  become_user: '{{ v_default_user }}'
+  shell: 'vim +PluginInstall +qall'
+  args:
+    stdin: "\n"
+
+- name: Install vim-plug plugins
+  changed_when: false
+  become_user: '{{ v_default_user }}'
+  shell: 'vim +PlugInstall +qall'
+  args:
+    stdin: "\n"
+
 - name: Install pip packages
   pip: 
     name: "{{ item }}"
