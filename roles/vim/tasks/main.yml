@@ -1,18 +1,14 @@
 ---
 - name: Install Vim package
-  apt:
-    pkg: vim
+  package:
+    name: vim
     state: present
-    update_cache: true
-  when: ansible_facts['os_family']|lower == 'debian'
 
 - name: Install packages required by Vim packages
-  apt:
-    pkg: "{{ item }}"
+  package:
+    name: "{{ item }}"
     state: present
-    update_cache: true
   loop: "{{ vim_packages }}"
-  when: ansible_facts['os_family']|lower == 'debian'
 
 # Ensure Snap is installed using snapd role
 - name: Install snaps required by Vim packages
@@ -27,72 +23,72 @@
 - name: Create .vimrc file
   template:
     src: .vimrc.j2
-    dest: "/home/{{ v_default_user }}/.vimrc"
+    dest: "{{ v_default_path }}{{ v_default_user }}/.vimrc"
     owner: "{{ v_default_user }}"
-    group: "{{ v_default_user }}"
+    group: "{{ v_default_group }}"
 
 - name: Create Vim home directory
   changed_when: false
   file:
-    path: "/home/{{ v_default_user }}/.vim"
+    path: "{{ v_default_path }}{{ v_default_user }}/.vim"
     state: directory
     recurse: yes
     owner: "{{ v_default_user }}"
-    group: "{{ v_default_user }}"
+    group: "{{ v_default_group }}"
     mode: '0755'
 
 - name: Create Vim pack directory
   changed_when: false
   file:
-    path: "/home/{{ v_default_user }}/.vim/pack/vendor/start"
+    path: "{{ v_default_path }}{{ v_default_user }}/.vim/pack/vendor/start"
     state: directory
     recurse: yes
     owner: "{{ v_default_user }}"
-    group: "{{ v_default_user }}"
+    group: "{{ v_default_group }}"
     mode: '0755'
 
 - name: Create pack plugin directories
   file:
-    path: "/home/{{ v_default_user }}/.vim/pack/vendor/start/{{ item.vim_nickname }}"
+    path: "{{ v_default_path }}{{ v_default_user }}/.vim/pack/vendor/start/{{ item.vim_nickname }}"
     state: directory
     recurse: yes
     owner: "{{ v_default_user }}"
-    group: "{{ v_default_user }}"
+    group: "{{ v_default_group }}"
   loop: "{{ vim_pack_repos }}"
 
 - name: Install pack plugins
   changed_when: false
   git:
     repo: "{{ item.vim_repo }}"
-    dest: "/home/{{ v_default_user }}/.vim/pack/vendor/start/{{ item.vim_nickname }}"
+    dest: "{{ v_default_path }}{{ v_default_user }}/.vim/pack/vendor/start/{{ item.vim_nickname }}"
     depth: 1
     force: true
   loop: "{{ vim_pack_repos }}"
 
 - name: Create Vundle directory
   file:
-    path: "/home/{{ v_default_user }}/.vim/bundle/Vundle.vim"
+    path: "{{ v_default_path }}{{ v_default_user }}/.vim/bundle/Vundle.vim"
     state: directory
     recurse: yes
     owner: "{{ v_default_user }}"
-    group: "{{ v_default_user }}"
+    group: "{{ v_default_group }}"
 
 - name: Install Vundle
   changed_when: false
   git:
     repo: "https://github.com/VundleVim/Vundle.vim.git"
-    dest: "/home/{{ v_default_user }}/.vim/bundle/Vundle.vim"
+    dest: "{{ v_default_path }}{{ v_default_user }}/.vim/bundle/Vundle.vim"
     depth: 1
     force: true
 
 - name: Correct .vim ownership
   changed_when: false
   file:
-    path: "/home/{{ v_default_user }}/.vim"
+    path: "{{ v_default_path }}{{ v_default_user }}/.vim"
     state: directory
     recurse: yes
     owner: '{{ v_default_user }}'
-    group: '{{ v_default_user }}'
+    group: '{{ v_default_group }}'
 
 - name: Install Vundle plugins
   changed_when: false

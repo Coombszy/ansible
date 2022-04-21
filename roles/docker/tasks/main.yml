@@ -28,8 +28,8 @@
     update_cache: true
   when: ansible_facts['os_family']|lower == 'debian'
 
-# RHEL
+# Other
 - name: Failed to install docker
   debug:
-    msg: Cannot install docker on RHEL, Update role to support it!
-  when: ansible_facts['os_family']|lower == 'redhat'
+    msg: Cannot install docker on anything but Debian, Update role to support it!
+  when: ansible_facts['os_family']|lower != 'debian'

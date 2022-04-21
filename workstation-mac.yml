@@ -1,0 +1,21 @@
+---
+
+- name: Install packages via roles
+  hosts: localhost
+  roles:
+    - role: roles/generic-packages
+      vars:
+        - packages: [
+              python3,
+              python,
+              htop,
+              screen,
+              git,
+              node
+            ]
+    # DevTools
+    - role: roles/vim
+      vars:
+        - v_default_user: 'liam.coombs'
+        - v_default_group: 'staff'
+        - v_default_path: '/Users/'

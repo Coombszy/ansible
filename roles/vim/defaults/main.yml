@@ -24,4 +24,6 @@ vim_pack_repos:
     - vim_repo: "https://github.com/pearofducks/ansible-vim"
       vim_nickname: "ansible"
 
-v_default_user: 'liam'
+v_default_user: "liam"
+v_default_group: "{{ v_default_user }}"
+v_default_path: "/home/"

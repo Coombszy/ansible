@@ -15,11 +15,10 @@
     update_cache: true
   when: ansible_facts['os_family']|lower == 'debian'
 
-# RHEL
-# This will fail as the repos are not configured
+# Other
+# This could fail as not all repos might be included for the given packages
 - name: Install generic packages
-  yum:
-    pkg: "{{ packages }}"
+  package:
+    name: "{{ packages }}"
     state: present
-    update_cache: true
-  when: ansible_facts['os_family']|lower == 'redhat'
+  when: ansible_facts['os_family']|lower != 'debian'
