@@ -14,5 +14,6 @@ packages: [
     apache2-utils,
     git,
     sysbench,
-    fonts-powerline
+    fonts-powerline,
+    nfs-common
 ]

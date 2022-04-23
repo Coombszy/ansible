@@ -56,6 +56,11 @@
     group: "{{ v_default_group }}"
   loop: "{{ vim_pack_repos }}"
 
+- name: Add safe repository (pack plugins)
+  changed_when: false
+  shell: "git config --global --add safe.directory {{ v_default_path }}{{ v_default_user }}/.vim/pack/vendor/start/{{ item.vim_nickname }}"
+  loop: "{{ vim_pack_repos }}"
+
 - name: Install pack plugins
   changed_when: false
   git:
@@ -72,6 +77,10 @@
     recurse: yes
     owner: "{{ v_default_user }}"
     group: "{{ v_default_group }}"
+
+- name: Add safe repository (Vundle)
+  changed_when: false
+  shell: "git config --global --add safe.directory {{ v_default_path }}{{ v_default_user }}/.vim/bundle/Vundle.vim"
 
 - name: Install Vundle
   changed_when: false

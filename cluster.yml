@@ -1,0 +1,24 @@
+---
+
+- name: Configure cluster (arm)
+  hosts: arm_cluster
+  become: true
+  roles:
+    - roles/generic-packages
+    - roles/snapd
+    - role: roles/vim
+      vars:
+        v_default_user: "pi"
+    - roles/patching
+    - roles/raspi-boot
+
+- name: Configure cluster (amd64)
+  hosts: amd64_cluster
+  become: true
+  roles:
+    - roles/generic-packages
+    - roles/snapd
+    - role: roles/vim
+      vars:
+        v_default_user: "liam"
+    - roles/patching

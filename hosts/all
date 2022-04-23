@@ -1,23 +1,30 @@
 # Hostnames are configured in ssh config
 
+# Generic
 [all]
 atlas
 hydrogen
 
 [all:children]
-picluster
+cluster
 
-[picluster:children]
-picluster_master
-picluster_nodes
-
-[picluster_master]
+# Cluster
+[cluster_master]
 raspi1
 
-[picluster_nodes]
-raspi2 
-raspi3 
+[cluster:children]
+arm_cluster
+amd64_cluster
 
+[arm_cluster]
+raspi1
+raspi2 
+raspi3
+
+[amd64_cluster]
+hydrogen
+
+# Configs
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
 
