@@ -5,7 +5,8 @@ vim_commands: [
     ]
 
 vim_packages: [
-      fzf
+      fzf,
+      silversearcher-ag
     ]
 
 # Currently none required

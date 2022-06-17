@@ -13,7 +13,10 @@ endif
 
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
+Plug 'junegunn/fzf.vim' " needed for previews
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'antoinemadec/coc-fzf'
 Plug 'luochen1990/rainbow'
 call plug#end()
 
@@ -40,6 +43,12 @@ filetype plugin indent on
 let g:coc_global_extensions = ['coc-tabnine','coc-yaml','coc-json','coc-java', 'coc-jedi', 'coc-rust-analyzer']
 
 "-------------------------------------------------------------------
+" FZF
+"-------------------------------------------------------------------
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -f -g ""'
+
+"-------------------------------------------------------------------
 " NERDTree Configs
 "-------------------------------------------------------------------
 let g:NERDTreeHijackNetrw = 1
@@ -63,6 +72,9 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 " Mapping controls
 "-------------------------------------------------------------------
 mapc "Remap to defaults first
+
+" FZF
+noremap ? :FZF<CR>
 
 " Navigation
 map h <Up>
