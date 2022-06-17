@@ -37,7 +37,7 @@ filetype plugin indent on
 "-------------------------------------------------------------------
 " CoC Conquer of Commands Configs
 "-------------------------------------------------------------------
-let g:coc_global_extensions = ['coc-tabnine','coc-yaml','coc-json','coc-java', 'coc-jedi']
+let g:coc_global_extensions = ['coc-tabnine','coc-yaml','coc-json','coc-java', 'coc-jedi', 'coc-rust-analyzer']
 
 "-------------------------------------------------------------------
 " NERDTree Configs
@@ -65,15 +65,30 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 mapc "Remap to defaults first
 
 " Navigation
-noremap h <Up>
-noremap j <Down>
-noremap k <Left>
-noremap l <Right>
+map h <Up>
+map j <Down>
+map k <Left>
+map l <Right>
+
+" hjkl Binds
 " Window Navigation
-noremap <C-w>h <C-w><Up> 
-noremap <C-w>j <C-w><Down> 
-noremap <C-w>k <C-w><Left> 
-noremap <C-w>l <C-w><Right> 
+noremap <C-h> <C-w><Up>
+noremap <C-j> <C-w><Down>
+noremap <C-k> <C-w><Left>
+noremap <C-l> <C-w><Right>
+" Tab navigation
+nnoremap <C-S-k> :tabprev<CR>
+nnoremap <C-S-l> :tabnext<CR>
+
+" Arrows Binds
+" Window Navigation
+noremap <C-Up> <C-w><Up>
+noremap <C-Down> <C-w><Down>
+noremap <C-Left> <C-w><Left>
+noremap <C-Right> <C-w><Right>
+" Tab navigation
+nnoremap <C-S-Left> :tabprev<CR>
+nnoremap <C-S-Right> :tabnext<CR>
 
 "-------------------------------------------------------------------
 " LightLine
