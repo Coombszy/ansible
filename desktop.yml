@@ -9,7 +9,7 @@
     - roles/flatpak
     # Gaming
     - roles/wine
-    - roles/lutris
+    # - roles/lutris # Broken?
     - roles/steam
     # Apps
     - roles/vscode
@@ -17,6 +17,6 @@
     - roles/spotify
     # DevTools
     - roles/docker
-    - roles/vim
+    - roles/neovim
     - roles/hyper # Clean
 

@@ -1,0 +1,36 @@
+---
+
+nv_default_user: "liam"
+nv_default_group: "{{ nv_default_user }}"
+nv_default_path: "/home/"
+
+neovim_directories: [
+  "{{ nv_default_path }}{{ nv_default_user }}/.config/nvim",
+  "{{ nv_default_path }}{{ nv_default_user }}/.config/nvim/plugin_data",
+  "{{ nv_default_path }}{{ nv_default_user }}/.config/nvim/plugin",
+  "{{ nv_default_path }}{{ nv_default_user }}/.local/share/nvim/site/autoload"
+]
+
+neovim_configs: [
+  coc.vim,
+  terminal.vim,
+  theme.vim,
+  lightline.vim,
+  nerd_tree.vim,
+  controls.vim,
+]
+
+# For auto loading before anything else
+neovim_plugins: [
+  plug.vim
+]
+
+neovim_packages: [
+  ripgrep,
+  silversearcher-ag,
+  fonts-powerline
+]
+
+# Currently none required
+neovim_pip_packages: [
+]

@@ -1,0 +1,98 @@
+---
+
+- name: Add neovim ppa
+  apt_repository:
+    repo: ppa:neovim-ppa/stable
+    state: present
+
+- name: Install neovim package
+  package:
+    name: neovim
+    state: present
+
+- name: Install packages required by neovim packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ neovim_packages }}"
+
+########################################################################################33
+# Directories
+
+- name: Create neovim directories
+  changed_when: false
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+    owner: "{{ nv_default_user }}"
+    group: "{{ nv_default_group }}"
+    mode: '0755'
+  loop: "{{ neovim_directories }}"
+
+########################################################################################33
+# Main Configs
+
+- name: Create init.vim file
+  changed_when: false
+  template:
+    src: init.vim
+    dest: "{{ nv_default_path }}{{ nv_default_user }}/.config/nvim/init.vim"
+    owner: "{{ nv_default_user }}"
+    group: "{{ nv_default_group }}"
+
+- name: Create config files
+  template:
+    src: "configs/{{ item }}"
+    dest: "{{ nv_default_path }}{{ nv_default_user }}/.config/nvim/plugin/{{ item }}"
+    owner: "{{ nv_default_user }}"
+    group: "{{ nv_default_group }}"
+  loop: "{{ neovim_configs }}"
+
+########################################################################################33
+# Plugins
+
+- name: Create plugins subdirectory in config/nvim
+  changed_when: false
+  file:
+    path: "{{ nv_default_path }}{{ nv_default_user }}/.local/share/nvim/site/autoload"
+    state: directory
+    recurse: yes
+    owner: "{{ nv_default_user }}"
+    group: "{{ nv_default_group }}"
+    mode: '0755'
+
+- name: Create plugin files
+  template:
+    src: "plugins/{{ item }}"
+    dest: "{{ nv_default_path }}{{ nv_default_user }}/.local/share/nvim/site/autoload/{{ item }}"
+    owner: "{{ nv_default_user }}"
+    group: "{{ nv_default_group }}"
+  loop: "{{ neovim_plugins }}"
+
+########################################################################################33
+# Install Node
+
+- name: Install nodejs lts.x
+  become: true
+  shell: 'curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && sudo apt-get install -y nodejs'
+
+########################################################################################33
+# Finalize
+
+- name: Install vim-plug plugins
+  changed_when: false
+  become_user: '{{ nv_default_user }}'
+  shell: 'nvim +PlugInstall +qall'
+  args:
+    stdin: "\n"
+
+- name: Correct neovim directories ownership
+  changed_when: false
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+    owner: '{{ nv_default_user }}'
+    group: '{{ nv_default_group }}'
+  loop: "{{ neovim_directories }}"

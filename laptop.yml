@@ -16,6 +16,6 @@
     - roles/spotify
     # DevTools
     - roles/docker
-    - roles/vim
+    - roles/neovim
     - roles/hyper # Clean
 
