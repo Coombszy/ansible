@@ -41,3 +41,6 @@ tnoremap <A-t> <C-\><C-n>:call TermToggle(12)<CR>
 tnoremap <Esc> <C-\><C-n>
 tnoremap :q! <C-\><C-n>:q!<CR>
 
+" CoC Completion/Suggestion
+inoremap <silent><expr> <c-space> coc#refresh()
+
