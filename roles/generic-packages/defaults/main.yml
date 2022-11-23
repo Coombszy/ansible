@@ -4,7 +4,6 @@ repos: []
 
 packages: [
     python3,
-    python,
     atop,
     htop,
     screen,

@@ -15,20 +15,20 @@
   when: ansible_facts['os_family']|lower == 'debian'
 
 # RHEL
-- name: Install flatpak
-  yum:
-    name: flatpak
-    state: present
-    update_cache: true
-  when: ansible_facts['os_family']|lower == 'redhat'
-
-- name: Install gnome-software-plugin-flatpak
-  yum:
-    name: gnome-software-plugin-flatpak
-    state: present
-    update_cache: true
-  when: ansible_facts['os_family']|lower == 'debian'
-
+# - name: Install flatpak
+#   yum:
+#     name: flatpak
+#     state: present
+#     update_cache: true
+#   when: ansible_facts['os_family']|lower == 'redhat'
+#
+# - name: Install gnome-software-plugin-flatpak
+#   yum:
+#     name: gnome-software-plugin-flatpak
+#     state: present
+#     update_cache: true
+#   when: ansible_facts['os_family']|lower == 'debian'
+#
 # Generic
 - name: Add flatpak repo
   flatpak_remote:

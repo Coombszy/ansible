@@ -17,5 +17,4 @@
     # DevTools
     - roles/docker
     - roles/neovim
-    - roles/hyper # Clean
 
